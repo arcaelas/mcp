@@ -59,13 +59,14 @@ arcaelas-mcp --port 8080
 
 ### image
 
-Generate images using AI models.
+Generate images using AI with optional reference images for style guidance.
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
 | `prompt` | string | Yes | - | Image description in English |
-| `model` | string | No | `nanobanana` | Model: `gptimage`, `nanobanana`, `nanobanana-pro` |
-| `size` | string | No | `1024x1024` | Dimensions: `512x512`, `1024x1024`, `1024x1792`, `1792x1024` |
+| `width` | number | No | `1024` | Output width (max 1024, auto-scaled if larger) |
+| `height` | number | No | `1024` | Output height (max 1024, auto-scaled if larger) |
+| `reference_images` | array | No | `[]` | Paths to reference images (max 2, max 3MB each) |
 
 ### audio
 
