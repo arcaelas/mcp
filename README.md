@@ -110,17 +110,27 @@ Upscale images using AI without quality loss.
 | `OPENAI_BASE_URL` | No | Custom OpenAI-compatible API endpoint |
 | `CLIENT_ID` | Yes* | Client ID for image processing services (required for `bgcleaner` and `resize`) |
 
+## CLI Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `--stdio` | Run in stdio mode (for Claude Desktop, etc.) |
+| `--port <number>` | HTTP server port (default: 3100) |
+| `--client-id <id>` | Client ID for image processing services |
+| `--openai-key <key>` | OpenAI API key |
+| `--openai-url <url>` | Custom OpenAI-compatible API endpoint |
+
 ## Examples
 
 ```bash
-# Start HTTP server
-OPENAI_API_KEY=sk-xxx CLIENT_ID=xxx arcaelas-mcp --port 3100
+# Using CLI arguments
+npx -y @arcaelas/mcp --stdio --client-id xxx --openai-key sk-xxx
 
-# Start in stdio mode
-OPENAI_API_KEY=sk-xxx CLIENT_ID=xxx arcaelas-mcp --stdio
+# Using environment variables
+OPENAI_API_KEY=sk-xxx CLIENT_ID=xxx npx -y @arcaelas/mcp --stdio
 
-# Using npx without global install
-npx -y @arcaelas/mcp --stdio
+# HTTP server on custom port
+npx -y @arcaelas/mcp --port 8080 --client-id xxx --openai-key sk-xxx
 ```
 
 ## License
