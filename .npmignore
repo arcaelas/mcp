@@ -1,0 +1,15 @@
+src/
+.git/
+.gitignore
+node_modules/
+*.log
+.DS_Store
+tsconfig.json
+.env
+.env.*
+.vscode/
+.idea/
+*.tsbuildinfo
+package-lock.json
+yarn.lock
+.arko-studio/

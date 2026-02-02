@@ -1,8 +1,8 @@
 /**
- * @description AI-powered image generation using chat completions
+ * @description AI-powered image redesign using reference images
  */
 
-import { writeFile, mkdtemp } from "node:fs/promises";
+import { writeFile, readFile, mkdtemp } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { config } from "../lib/config.js";
@@ -10,30 +10,49 @@ import { openai_fetch } from "../lib/client.js";
 import { z } from "zod";
 import * as schemas from "../schemas.js";
 
-type ImageInput = z.infer<typeof schemas.image>;
+type RedesignInput = z.infer<typeof schemas.redesign>;
 
 async function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 /**
- * Generate images from text prompt
- * @param input - Prompt and count parameters
+ * Redesign image based on text prompt
+ * @param input - Prompt, filename, and count parameters
  * @returns Array of file paths to generated images
  */
-export async function image_handler(input: ImageInput): Promise<string[]> {
+export async function redesign_handler(input: RedesignInput): Promise<string[]> {
+  const image_buffer = await readFile(input.filename);
+  const base64_image = image_buffer.toString("base64");
+  const extension = input.filename.split(".").pop()?.toLowerCase() || "png";
+  const mime_type =
+    extension === "jpg" || extension === "jpeg" ? "image/jpeg" :
+    extension === "webp" ? "image/webp" : "image/png";
+  const image_url = `data:${mime_type};base64,${base64_image}`;
+
   const pathnames: string[] = [];
 
   for (let i = 0; i < input.count; i++) {
-    const temp_dir = await mkdtemp(join(tmpdir(), "mcp-image-"));
-    const file_path = join(temp_dir, `image_${i + 1}.png`);
+    const temp_dir = await mkdtemp(join(tmpdir(), "mcp-redesign-"));
+    const file_path = join(temp_dir, `redesign_${i + 1}.png`);
 
     const response = await openai_fetch("/chat/completions", {
       body: JSON.stringify({
         model: config.openai.image_model,
         messages: [{
           role: "user",
-          content: input.prompt,
+          content: [
+            {
+              type: "image_url",
+              image_url: {
+                url: image_url,
+              },
+            },
+            {
+              type: "text",
+              text: input.prompt,
+            },
+          ],
         }],
       }),
     });
