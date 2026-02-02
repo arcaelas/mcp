@@ -4,7 +4,7 @@
     "name": "Miguel Guevara"
   },
   "bin": {
-    "rag": "dist/index.js"
+    "mcp": "dist/index.js"
   },
   "bugs": {
     "url": "https://github.com/arcaelas/mcp/issues"
