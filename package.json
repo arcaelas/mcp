@@ -1,26 +1,23 @@
 {
   "name": "@arcaelas/mcp",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "MCP server providing AI-powered tools for audio generation, image generation, and image redesign using OpenAI-compatible APIs",
   "type": "module",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "bin": {
-    "mcp": "build/index.js",
-    "arcaelas-mcp": "build/index.js"
+    "arcaelas-mcp": "dist/index.js"
   },
   "files": [
-    "build",
+    "dist",
     "README.md",
-    "LICENSE",
-    "CHANGELOG.md"
+    "LICENSE"
   ],
   "scripts": {
-    "build": "tsc && chmod +x build/index.js",
     "dev": "tsx watch src/index.ts",
-    "start": "node build/index.js",
-    "start:stdio": "node build/index.js --stdio",
-    "prepublishOnly": "npm run build",
+    "build": "tsc",
+    "prepublishOnly": "yarn build",
+    "start": "node dist/index.js",
     "inspector": "npx @modelcontextprotocol/inspector tsx src/index.ts"
   },
   "keywords": [
