@@ -1,6 +1,6 @@
 {
   "name": "@arcaelas/mcp",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "MCP server providing AI-powered tools for audio generation, image generation, and image redesign using OpenAI-compatible APIs",
   "type": "module",
   "main": "build/index.js",
@@ -16,7 +16,7 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && chmod +x build/index.js",
     "dev": "tsx watch src/index.ts",
     "start": "node build/index.js",
     "start:stdio": "node build/index.js --stdio",
