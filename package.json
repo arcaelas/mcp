@@ -1,25 +1,35 @@
 {
-  "name": "@arcaelas/mcp",
-  "version": "1.3.0",
-  "description": "MCP server providing AI-powered tools for audio generation, image generation, and image redesign using OpenAI-compatible APIs",
-  "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "author": {
+    "email": "arcaela.reyes@gmail.com",
+    "name": "Miguel Guevara"
+  },
   "bin": {
-    "arcaelas-mcp": "dist/index.js"
+    "rag": "dist/index.js"
+  },
+  "bugs": {
+    "url": "https://github.com/arcaelas/mcp/issues"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.3",
+    "express": "^5.2.1",
+    "zod": "^4.3.6"
+  },
+  "description": "MCP server providing AI-powered tools for audio generation, image generation, and image redesign using OpenAI-compatible APIs",
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "files": [
     "dist",
     "README.md",
     "LICENSE"
   ],
-  "scripts": {
-    "dev": "tsx watch src/index.ts",
-    "build": "tsc",
-    "prepublishOnly": "yarn build",
-    "start": "node dist/index.js",
-    "inspector": "npx @modelcontextprotocol/inspector tsx src/index.ts"
-  },
+  "homepage": "https://github.com/arcaelas/mcp#readme",
   "keywords": [
     "mcp",
     "model-context-protocol",
@@ -32,31 +42,20 @@
     "audio-generation",
     "image-redesign"
   ],
-  "author": {
-    "name": "Miguel Guevara",
-    "email": "arcaela.reyes@gmail.com"
-  },
+  "license": "MIT",
+  "main": "dist/index.js",
+  "name": "@arcaelas/mcp",
   "repository": {
     "type": "git",
     "url": "https://github.com/arcaelas/mcp"
   },
-  "homepage": "https://github.com/arcaelas/mcp#readme",
-  "bugs": {
-    "url": "https://github.com/arcaelas/mcp/issues"
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "inspector": "npx @modelcontextprotocol/inspector tsx src/index.ts",
+    "prepublishOnly": "yarn build",
+    "start": "node dist/index.js"
   },
-  "license": "MIT",
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.25.3",
-    "express": "^5.2.1",
-    "zod": "^4.3.6"
-  },
-  "devDependencies": {
-    "@types/express": "^5.0.6",
-    "@types/node": "^22.0.0",
-    "tsx": "^4.0.0",
-    "typescript": "^5.0.0"
-  }
+  "type": "module",
+  "version": "1.3.0"
 }
